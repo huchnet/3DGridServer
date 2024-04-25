@@ -1,0 +1,13 @@
+{ 
+    "type": "module",
+    "scripts":{
+    "dev": "nodemon index.js"
+  },
+    "dependencies": {
+    "pathfinding": "github:schteppe/PathFinding3D.js#master",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
