@@ -1081,9 +1081,351 @@ const map = {
     size: [210, 210],
     gridDivision: 2,
     items: [
-        ...floor0,
-        ...floor1,
-        ...floor0_floor2,
+
+        {
+            ...items.post_Lantern,
+            gridPosition: [5, 1, 0]
+        },
+        {
+            ...items.bench,
+            gridPosition: [0, 4, 0],
+            rotation: 1
+        },
+        {
+            ...items.vela_1,
+            gridPosition: [0, 6, 0]
+        },
+        {
+            ...dungeon_Items.wall_pillar,
+            gridPosition: [5, -6, 4]
+        },
+        {
+            ...dungeon_Items.wall,
+            gridPosition: [9, -6, 4]
+        },
+        {
+            ...dungeon_Items.torch_mounted5,
+            gridPosition: [3, -4, 4]
+        },
+        {
+            ...dungeon_Items.torch_mounted5,
+            gridPosition: [3, -1, 0]
+        },
+        {
+            ...dungeon_Items.barrier_colum_half,
+            gridPosition: [-1, -1, 4]
+        },
+
+        {
+            ...dungeon_Items.barrier_column2,
+            gridPosition: [2, -1, 4]
+        },
+        {
+            ...dungeon_Items.barrier_colum_half,
+            gridPosition: [6, -2, 4],
+            rotation: 2
+        },
+        {
+            ...dungeon_Items.wall,
+            gridPosition: [-1, -6, 4]
+        },
+        {
+            ...dungeon_Items.wall,
+            gridPosition: [3, -6, 4]
+        },
+        {
+            ...dungeon_Items.wall_cracked,
+            gridPosition: [-2, -1, 4],
+            rotation: 1
+        },
+        {
+            ...dungeon_Items.wall,
+            gridPosition: [-2, 3, 4],
+            rotation: 1
+        },
+        {
+            ...dungeon_Items.wall_archedwindow_gated,
+            gridPosition: [-2, -5, 4],
+            rotation: 1
+        },
+
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [-1, -2, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [-1, -4, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [-1, -6, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [1, -2, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [1, -4, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [1, -6, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [3, -2, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [3, -4, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [5, -2, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [5, -4, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [5, -6, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [3, -6, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [7, -2, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [7, -4, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [7, -6, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [9, -2, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [9, -4, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [9, -6, 4]
+        },
+        {
+            ...dungeon_Items.stairs_wall_left,
+            gridPosition: [9, -2, 0],
+            rotation: 3
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [11, -2, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [11, -4, 4]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [11, -6, 4]
+        },
+
+        {
+            ...dungeon_Items.wall,
+            gridPosition: [-1, -2, 0]
+        },
+        {
+            ...dungeon_Items.wall,
+            gridPosition: [3, -2, 0]
+        },
+        {
+            ...dungeon_Items.wall_arched,
+            gridPosition: [-2, -1, 0],
+            rotation: 1
+        },
+        {
+            ...dungeon_Items.wall_archedwindow_gated,
+            gridPosition: [-2, 3, 0],
+            rotation: 1
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [-2, 0, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [-2, 2, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [-2, 4, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [-2, 6, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [0, 0, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [2, 2, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [2, 4, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [4, 4, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [6, 4, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [6, 6, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [4, 6, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [2, 6, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [4, 2, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [6, 2, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [0, 2, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [0, 4, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [0, 6, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [2, 0, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [4, 0, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [6, 0, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [8, 0, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [8, 2, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [8, 4, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [8, 6, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [10, 0, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [10, 2, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [10, 4, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [10, 6, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [12, 0, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [12, 2, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [12, 4, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [12, 6, 0]
+        },
+        // {
+        //     ...dungeon_Items.floor_tile_small,
+        //     gridPosition: [8, 0, 0]
+        // },
+        ///
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [100, 100, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [100, 102, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [100, 104, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [100, 106, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [102, 100, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [104, 100, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [106, 100, 0]
+        },
+        {
+            ...dungeon_Items.floor_tile_small,
+            gridPosition: [108, 100, 0]
+        }
+
+        //...floor0,
+        //...floor1,
+        //...floor0_floor2,
 
     ],
     blockers: [
@@ -1094,7 +1436,7 @@ const map = {
     ]
 }
 
-function updateStairGrid3D(nodesX, x = 100, y = 100, z = 0) {
+function updateStairGrid3D(nodesX, x = 8, y = 2, z = 0) {
     setNotWalkable(nodesX, [x, y + 4, z])
     setNotWalkable(nodesX, [x + 4, y + 3, z])
     setNotWalkable(nodesX, [x + 3, y + 3, z])
@@ -1268,14 +1610,15 @@ function setNotWalkable(layout, gridPosition) {
 }
 
 
-const nodes = create3DLayout(map.size[0] * map.gridDivision, map.size[1] * map.gridDivision, 5);
+const nodes = create3DLayout(map.size[0] * map.gridDivision, map.size[1] * map.gridDivision, 1);
 makeAllWalkableV2(nodes, 0)
-updateStairGrid3D(nodes, 100, 100, 0)
-updateRectangle(nodes)
+//updateStairGrid3D(nodes, 8, 2, 0)
+//updateRectangle(nodes)
 
 const io = new Server({
     cors: {
-        origin: "http://localhost:5173",
+        origin: '*'
+        // origin: "http://localhost:5173",
     },
 });
 
@@ -1294,7 +1637,7 @@ io.on("connection", (socket) => {
         name: socket.id.substring(0, 5),
         id: socket.id,
         orientation: 8,
-        position: generateRandomPosition([104, 104, 4]),
+        position: generateRandomPosition([5, 5, 0]),
         mapId: "level-0",
         level: 1,
         path: [],
@@ -1302,16 +1645,23 @@ io.on("connection", (socket) => {
     });
     socket.emit("hello", {
         map,
-        //maps,
         characters,
-        id: socket.id,
-        items,
+        id: socket.id
     });
 
     io.emit("characters", characters);
 
 
     socket.on("move3DPath", (from, to) => {//console.log(nodes[0][0][0])
+
+        console.log("move3DPath requested")
+        console.log(to)
+        // if (from === to || to || from) {
+        //     console.log()
+        //     console.log("error " + from + " " + to)
+        //     return
+        // }
+
         const cloneNodes = cloneGrid(nodes)
         const character = characters.find(
             (character) => character.id === socket.id
