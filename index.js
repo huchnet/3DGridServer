@@ -1,6 +1,7 @@
 import pathfinding from 'pathfinding';
 import { Server } from "socket.io";
 
+
 const dungeon_Items = {
     floor_tile_extralarge_grates: {
         name: "floor_tile_extralarge_grates",
@@ -815,12 +816,10 @@ const floor0 = [
     {
         ...dungeon_Items.stairs_walled,
         gridPosition: [100, 100, 0],
-        type: "stair"
+        type: "stair",
+        walkable: true
     },
-    {
-        ...dungeon_Items.wall,
-        gridPosition: [100, 100, 0]
-    },
+
     {
         ...dungeon_Items.wall_cracked,
         gridPosition: [104, 100, 0]
@@ -1078,356 +1077,394 @@ const floor1 = [
 const map = {
     mapId: "level-0",
     initPosition: [0, -0.002, 0],
-    size: [210, 210],
+    size: [300, 300, 30],
     gridDivision: 2,
     items: [
-
-        {
-            ...items.post_Lantern,
-            gridPosition: [5, 1, 0]
-        },
-        {
-            ...items.bench,
-            gridPosition: [0, 4, 0],
-            rotation: 1
-        },
-        {
-            ...items.vela_1,
-            gridPosition: [0, 6, 0]
-        },
-        {
-            ...dungeon_Items.wall_pillar,
-            gridPosition: [5, -6, 4]
-        },
-        {
-            ...dungeon_Items.wall,
-            gridPosition: [9, -6, 4]
-        },
-        {
-            ...dungeon_Items.torch_mounted5,
-            gridPosition: [3, -4, 4]
-        },
-        {
-            ...dungeon_Items.torch_mounted5,
-            gridPosition: [3, -1, 0]
-        },
-        {
-            ...dungeon_Items.barrier_colum_half,
-            gridPosition: [-1, -1, 4]
-        },
-
-        {
-            ...dungeon_Items.barrier_column2,
-            gridPosition: [2, -1, 4]
-        },
-        {
-            ...dungeon_Items.barrier_colum_half,
-            gridPosition: [6, -2, 4],
-            rotation: 2
-        },
-        {
-            ...dungeon_Items.wall,
-            gridPosition: [-1, -6, 4]
-        },
-        {
-            ...dungeon_Items.wall,
-            gridPosition: [3, -6, 4]
-        },
-        {
-            ...dungeon_Items.wall_cracked,
-            gridPosition: [-2, -1, 4],
-            rotation: 1
-        },
-        {
-            ...dungeon_Items.wall,
-            gridPosition: [-2, 3, 4],
-            rotation: 1
-        },
-        {
-            ...dungeon_Items.wall_archedwindow_gated,
-            gridPosition: [-2, -5, 4],
-            rotation: 1
-        },
-
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [-1, -2, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [-1, -4, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [-1, -6, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [1, -2, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [1, -4, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [1, -6, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [3, -2, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [3, -4, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [5, -2, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [5, -4, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [5, -6, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [3, -6, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [7, -2, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [7, -4, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [7, -6, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [9, -2, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [9, -4, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [9, -6, 4]
-        },
-        {
-            ...dungeon_Items.stairs_wall_left,
-            gridPosition: [9, -2, 0],
-            rotation: 3
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [11, -2, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [11, -4, 4]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [11, -6, 4]
-        },
-
-        {
-            ...dungeon_Items.wall,
-            gridPosition: [-1, -2, 0]
-        },
-        {
-            ...dungeon_Items.wall,
-            gridPosition: [3, -2, 0]
-        },
-        {
-            ...dungeon_Items.wall_arched,
-            gridPosition: [-2, -1, 0],
-            rotation: 1
-        },
-        {
-            ...dungeon_Items.wall_archedwindow_gated,
-            gridPosition: [-2, 3, 0],
-            rotation: 1
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [-2, 0, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [-2, 2, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [-2, 4, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [-2, 6, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [0, 0, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [2, 2, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [2, 4, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [4, 4, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [6, 4, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [6, 6, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [4, 6, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [2, 6, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [4, 2, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [6, 2, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [0, 2, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [0, 4, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [0, 6, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [2, 0, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [4, 0, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [6, 0, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [8, 0, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [8, 2, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [8, 4, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [8, 6, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [10, 0, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [10, 2, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [10, 4, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [10, 6, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [12, 0, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [12, 2, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [12, 4, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [12, 6, 0]
-        },
-        // {
-        //     ...dungeon_Items.floor_tile_small,
-        //     gridPosition: [8, 0, 0]
-        // },
-        ///
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [100, 100, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [100, 102, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [100, 104, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [100, 106, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [102, 100, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [104, 100, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [106, 100, 0]
-        },
-        {
-            ...dungeon_Items.floor_tile_small,
-            gridPosition: [108, 100, 0]
-        }
-
-        //...floor0,
-        //...floor1,
-        //...floor0_floor2,
+        ...floor0,
+        ...floor1,
+        ...floor0_floor2
 
     ],
+    // items: [
+
+    //     {
+    //         ...items.post_Lantern,
+    //         gridPosition: [5, 1, 0]
+    //     },
+    //     {
+    //         ...items.bench,
+    //         gridPosition: [0, 4, 0],
+    //         rotation: 1
+    //     },
+    //     {
+    //         ...items.vela_1,
+    //         gridPosition: [0, 6, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.wall_pillar,
+    //         gridPosition: [5, -6, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.wall,
+    //         gridPosition: [9, -6, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.torch_mounted5,
+    //         gridPosition: [3, -4, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.torch_mounted5,
+    //         gridPosition: [3, -1, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.barrier_colum_half,
+    //         gridPosition: [-1, -1, 4]
+    //     },
+
+    //     {
+    //         ...dungeon_Items.barrier_column2,
+    //         gridPosition: [2, -1, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.barrier_colum_half,
+    //         gridPosition: [6, -2, 4],
+    //         rotation: 2
+    //     },
+    //     {
+    //         ...dungeon_Items.wall,
+    //         gridPosition: [-1, -6, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.wall,
+    //         gridPosition: [3, -6, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.wall_cracked,
+    //         gridPosition: [-2, -1, 4],
+    //         rotation: 1
+    //     },
+    //     {
+    //         ...dungeon_Items.wall,
+    //         gridPosition: [-2, 3, 4],
+    //         rotation: 1
+    //     },
+    //     {
+    //         ...dungeon_Items.wall_archedwindow_gated,
+    //         gridPosition: [-2, -5, 4],
+    //         rotation: 1
+    //     },
+
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [-1, -2, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [-1, -4, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [-1, -6, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [1, -2, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [1, -4, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [1, -6, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [3, -2, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [3, -4, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [5, -2, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [5, -4, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [5, -6, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [3, -6, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [7, -2, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [7, -4, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [7, -6, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [9, -2, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [9, -4, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [9, -6, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.stairs_wall_left,
+    //         gridPosition: [9, -2, 0],
+    //         rotation: 3
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [11, -2, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [11, -4, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [11, -6, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [13, -2, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [13, -4, 4]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [13, -6, 4]
+    //     },
+
+    //     {
+    //         ...dungeon_Items.wall,
+    //         gridPosition: [-1, -2, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.wall,
+    //         gridPosition: [3, -2, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.wall,
+    //         gridPosition: [11, - 2, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.wall_arched,
+    //         gridPosition: [-2, -1, 0],
+    //         rotation: 1
+    //     },
+    //     {
+    //         ...dungeon_Items.wall_archedwindow_gated,
+    //         gridPosition: [-2, 3, 0],
+    //         rotation: 1
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [-2, 0, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [-2, 2, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [-2, 4, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [-2, 6, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [0, 0, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [2, 2, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [2, 4, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [4, 4, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [6, 4, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [6, 6, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [4, 6, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [2, 6, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [4, 2, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [6, 2, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [0, 2, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [0, 4, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [0, 6, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [2, 0, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [4, 0, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [6, 0, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [8, 0, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [8, 2, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [8, 4, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [8, 6, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [10, 0, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [10, 2, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [10, 4, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [10, 6, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [12, 0, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [12, 2, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [12, 4, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [12, 6, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [14, 0, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [14, 2, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [14, 4, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [14, 6, 0]
+    //     },
+    //     // {
+    //     //     ...dungeon_Items.floor_tile_small,
+    //     //     gridPosition: [8, 0, 0]
+    //     // },
+    //     ///
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [100, 100, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [100, 102, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [100, 104, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [100, 106, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [102, 100, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [104, 100, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [106, 100, 0]
+    //     },
+    //     {
+    //         ...dungeon_Items.floor_tile_small,
+    //         gridPosition: [108, 100, 0]
+    //     },
+
+    //     //...floor0,
+    //     //...floor1,
+    //     //...floor0_floor2,
+
+    // ],
     blockers: [
 
         {
@@ -1435,8 +1472,9 @@ const map = {
         }
     ]
 }
-
-function updateStairGrid3D(nodesX, x = 8, y = 2, z = 0) {
+const walkableMap = create3DWalkableMap(map.size[0] * 2, map.size[1] * 2, map.size[2])
+const blockerMap = create3DWalkableMap(map.size[0] * 2, map.size[1] * 2, map.size[2])
+function updateStairGrid3D(nodesX, x = 100, y = 10, z = 0) {
     setNotWalkable(nodesX, [x, y + 4, z])
     setNotWalkable(nodesX, [x + 4, y + 3, z])
     setNotWalkable(nodesX, [x + 3, y + 3, z])
@@ -1489,6 +1527,20 @@ function create3DLayout(x, y, z) {
         }
     }
     //console.log("layout " + layout.length)
+    return layout;
+}
+
+function create3DWalkableMap(x, y, z) {
+    let layout = new Array(x);
+    for (let i = 0; i < x; i++) {
+        layout[i] = new Array(y);
+        for (let j = 0; j < y; j++) {
+            layout[i][j] = new Array(z);
+            for (let k = 0; k < z; k++) {
+                layout[i][j][k] = 0
+            }
+        }
+    }
     return layout;
 }
 
@@ -1555,7 +1607,45 @@ function createAllWalkable(layout) {
                             let zt = o + k;
 
                             if (layout[xt][yt][zt] != layout[i][j][k]) {
+
                                 layout[i][j][k].neighbors.push(layout[xt][yt][zt]);
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+function createAllWalkableV2(layout, walkableMap) {
+    for (let i = 0; i < layout.length; i++) {
+        for (let j = 0; j < layout[i].length; j++) {
+            for (let k = 0; k < layout[i][j].length; k++) {
+
+                let mInit = (i + -1 >= 0) ? -1 : 0;
+                let mEnd = (i + 1 < layout.length) ? 1 : 0;
+
+                for (let m = mInit; m <= mEnd; m++) {
+
+                    let nInit = (j + -1 >= 0) ? -1 : 0;
+                    let nEnd = (j + 1 < layout[i].length) ? 1 : 0;
+
+                    for (let n = nInit; n <= nEnd; n++) {
+
+                        let oInit = (k + -1 >= 0) ? -1 : 0;
+                        let oEnd = (k + 1 < layout[i][j].length) ? 1 : 0;
+
+                        for (let o = oInit; o <= oEnd; o++) {
+
+                            let xt = m + i;
+                            let yt = n + j;
+                            let zt = o + k;
+
+                            if (layout[xt][yt][zt] != layout[i][j][k]) {
+                                if (walkableMap[i][j][k] === 1 && walkableMap[xt][yt][zt] === 1) {
+                                    layout[i][j][k].neighbors.push(layout[xt][yt][zt]);
+                                }
                             }
                         }
                     }
@@ -1608,12 +1698,120 @@ function setNotWalkable(layout, gridPosition) {
     layout[gridPosition[0]][gridPosition[1]][gridPosition[2]].neighbors = []
     return targetNode.x + " " + targetNode.y + " " + targetNode.z
 }
+function updateBlockerMap() {
+    //stairs lvl0
+    blockerMap[103][104][0] = 1
+    blockerMap[102][104][0] = 1
+    blockerMap[101][104][0] = 1
+    blockerMap[103][103][0] = 1
+    blockerMap[102][103][0] = 1
+    blockerMap[101][103][0] = 1
+    blockerMap[103][102][0] = 1
+    blockerMap[102][102][0] = 1
+    blockerMap[101][102][0] = 1
+    blockerMap[104][102][0] = 1
+    blockerMap[104][103][0] = 1
+    blockerMap[104][104][0] = 1
+    blockerMap[100][102][0] = 1
+    blockerMap[100][103][0] = 1
+    blockerMap[100][104][0] = 1
+    //stairs lvl1
+    blockerMap[92][95][4] = 1
+    blockerMap[92][96][4] = 1
+    blockerMap[92][97][4] = 1
+    blockerMap[92][98][4] = 1
+    blockerMap[93][95][4] = 1
+    blockerMap[93][96][4] = 1
+    blockerMap[93][97][4] = 1
+    blockerMap[93][98][4] = 1
+    blockerMap[94][95][4] = 1
+    blockerMap[94][96][4] = 1
+    blockerMap[94][97][4] = 1
+    blockerMap[94][98][4] = 1
+    blockerMap[95][95][4] = 1
+    blockerMap[95][96][4] = 1
+    blockerMap[95][97][4] = 1
+    blockerMap[95][98][4] = 1
+    blockerMap[96][95][4] = 1
+    blockerMap[96][96][4] = 1
+    blockerMap[96][97][4] = 1
+    blockerMap[96][98][4] = 1
+    blockerMap[97][95][4] = 1
+    blockerMap[97][96][4] = 1
+    blockerMap[97][97][4] = 1
+    blockerMap[97][98][4] = 1
+    blockerMap[98][95][4] = 1
+    blockerMap[98][96][4] = 1
+    blockerMap[98][97][4] = 1
+    blockerMap[98][98][4] = 1
+    blockerMap[99][95][4] = 1
+    blockerMap[99][96][4] = 1
+    blockerMap[99][97][4] = 1
+    blockerMap[99][98][4] = 1
+    blockerMap[100][98][4] = 1
+
+}
+function updateWalkableMap() {
+    for (let i = 0; i < 14; i++) {
+        for (let j = 0; j < 21; j++) {
+            if (blockerMap[92 + j][102 + i][0] != 1) {
+                walkableMap[92 + j][102 + i][0] = 1
+            }
+
+        }
+    }
+    //stairs
+    walkableMap[101][104][0] = 1
+    walkableMap[102][104][0] = 1
+    walkableMap[103][104][0] = 1
+    walkableMap[101][103][1] = 1
+    walkableMap[102][103][1] = 1
+    walkableMap[103][103][1] = 1
+    walkableMap[101][102][2] = 1
+    walkableMap[102][102][2] = 1
+    walkableMap[103][102][2] = 1
+    walkableMap[101][101][3] = 1
+    walkableMap[102][101][3] = 1
+    walkableMap[103][101][3] = 1
+    walkableMap[101][100][4] = 1
+    walkableMap[102][100][4] = 1
+    walkableMap[103][100][4] = 1
+    walkableMap[100][100][4] = 1
+    walkableMap[104][100][4] = 1
+    walkableMap[104][101][4] = 1
+    walkableMap[104][102][4] = 1
+    walkableMap[104][103][4] = 1
+    walkableMap[104][104][4] = 1
+    walkableMap[100][100][4] = 1
+    walkableMap[100][101][4] = 1
+    walkableMap[100][102][4] = 1
+    walkableMap[100][103][4] = 1
+    walkableMap[100][104][4] = 1
+    //floor1
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 33; j++) {
+            if (blockerMap[92 + j][95 + i][4] != 1) {
+                walkableMap[92 + j][95 + i][4] = 1
+            }
+
+        }
+    }
+    //stairs
 
 
-const nodes = create3DLayout(map.size[0] * map.gridDivision, map.size[1] * map.gridDivision, 1);
-makeAllWalkableV2(nodes, 0)
+
+}
+
+const nodes = create3DLayout(map.size[0] * map.gridDivision, map.size[1] * map.gridDivision, 5);
+//makeAllWalkableV2(nodes, 0)
+updateBlockerMap()
+updateWalkableMap()
+console.log(nodes.length)
+console.log(walkableMap.length)
+createAllWalkableV2(nodes, walkableMap)
 //updateStairGrid3D(nodes, 8, 2, 0)
 //updateRectangle(nodes)
+
 
 const io = new Server({
     cors: {
@@ -1637,7 +1835,7 @@ io.on("connection", (socket) => {
         name: socket.id.substring(0, 5),
         id: socket.id,
         orientation: 8,
-        position: generateRandomPosition([5, 5, 0]),
+        position: generateRandomPosition([92, 104, 0]),
         mapId: "level-0",
         level: 1,
         path: [],
@@ -1656,11 +1854,6 @@ io.on("connection", (socket) => {
 
         console.log("move3DPath requested")
         console.log(to)
-        // if (from === to || to || from) {
-        //     console.log()
-        //     console.log("error " + from + " " + to)
-        //     return
-        // }
 
         const cloneNodes = cloneGrid(nodes)
         const character = characters.find(
