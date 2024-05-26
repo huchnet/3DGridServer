@@ -1077,7 +1077,7 @@ const floor1 = [
 const map = {
     mapId: "level-0",
     initPosition: [0, -0.002, 0],
-    size: [300, 300, 30],
+    size: [300, 300, 5],
     gridDivision: 2,
     items: [
         ...floor0,
@@ -1526,7 +1526,6 @@ function create3DLayout(x, y, z) {
             }
         }
     }
-    //console.log("layout " + layout.length)
     return layout;
 }
 
@@ -1698,7 +1697,7 @@ function setNotWalkable(layout, gridPosition) {
     layout[gridPosition[0]][gridPosition[1]][gridPosition[2]].neighbors = []
     return targetNode.x + " " + targetNode.y + " " + targetNode.z
 }
-function updateBlockerMap() {
+function updateBlockerMap(blockerMap) {
     //stairs lvl0
     blockerMap[103][104][0] = 1
     blockerMap[102][104][0] = 1
@@ -1802,12 +1801,12 @@ function updateWalkableMap() {
 
 }
 
-const nodes = create3DLayout(map.size[0] * map.gridDivision, map.size[1] * map.gridDivision, 5);
+const nodes = create3DLayout(map.size[0] * map.gridDivision, map.size[1] * map.gridDivision, map.size[2]);
 //makeAllWalkableV2(nodes, 0)
-updateBlockerMap()
+updateBlockerMap(blockerMap)
 updateWalkableMap()
-console.log(nodes.length)
-console.log(walkableMap.length)
+// console.log(nodes.length)
+// console.log(walkableMap.length)
 createAllWalkableV2(nodes, walkableMap)
 //updateStairGrid3D(nodes, 8, 2, 0)
 //updateRectangle(nodes)
@@ -1838,7 +1837,7 @@ io.on("connection", (socket) => {
         position: generateRandomPosition([92, 104, 0]),
         mapId: "level-0",
         level: 1,
-        path: [],
+        path: [generateRandomPosition([92, 104, 0])],
         fly: 0
     });
     socket.emit("hello", {
@@ -1851,26 +1850,144 @@ io.on("connection", (socket) => {
 
 
     socket.on("move3DPath", (from, to) => {//console.log(nodes[0][0][0])
+        if (from[0] == to[0] && from[1] == to[1] && from[2] == to[2]) {
+            //Joystick SVGTextPositioningElement, so position updated for all users
+            //console.log("move correction requested")
+            const character = characters.find(
+                (character) => character.id === socket.id
+            );
+            console.log("move3DPath Correction Move Requested")
+            console.log("from:" + from)
+            console.log("to:" + to)
+            character.position = from;
+            character.path = [from, to];
+            io.emit("playerMove", character);
+            character.path = []
+            character.position = to
+        } else {
+            console.log("move3DPath requested")
+            console.log("from:" + from)
+            console.log("to:" + to)
+            console.log("is walkable? " + walkableMap[to[0]][to[1]][to[2]])
+            const cloneNodes = cloneGrid(nodes)
+            const character = characters.find(
+                (character) => character.id === socket.id
+            );
+            const startNode = cloneNodes[from[0]][from[1]][from[2]];
+            const endNode = cloneNodes[to[0]][to[1]][to[2]];
+            // Find path
+            const finder = new pathfinding.AStarFinder();
+            const path = finder.findPath(startNode, endNode, cloneNodes);
+            //console.log(path)
+            //console.log(cloneNodes[103][104][0])
+            character.position = from;
+            character.path = path;
+            for (let i = 0; i < path.length; i++) {
+                console.log(path[i])
 
-        console.log("move3DPath requested")
+            }
+
+            io.emit("playerMove", character);
+            character.path = []
+            character.position = to
+        }
+
+
+
+
+    })
+    socket.on("joystickMove", (from, to, steps = 1) => {//console.log(nodes[0][0][0])
+        if (from[0] == to[0] && from[1] == to[1] && from[2] == to[2]) {
+            //Joystick SVGTextPositioningElement, so position updated for all users
+            //console.log("move correction requested")
+            const character = characters.find(
+                (character) => character.id === socket.id
+            );
+            console.log("move3DPath Correction Move Requested")
+            console.log("from:" + from)
+            console.log("to:" + to)
+            character.position = from;
+            character.path = [from, to];
+            io.emit("playerMove", character);
+            character.path = []
+            character.position = to
+        } else {
+            const destination = to
+            console.log("move3DPath requested")
+            console.log("from:" + from)
+            console.log("to:" + to)
+            console.log("is walkable? " + walkableMap[to[0]][to[1]][to[2]])
+            const x = to[0] - from[0]
+            const y = to[1] - from[1]
+            for (let i = 0; i < steps; i++) {
+                if (walkableMap[to[0] + i * x][to[1] + i * y][to[2]] === 1) {
+                    destination[0] = to[0] + i * x
+                    destination[1] = to[1] + i * y
+                    destination[2] = to[2]
+                } else if (walkableMap[to[0] + i * x][to[1] + i * y][to[2] + 1] === 1) {
+                    destination[0] = to[0] + i * x
+                    destination[1] = to[1] + i * y
+                    destination[2] = to[2] + 1
+                } else if (walkableMap[to[0] + i * x][to[1] + i * y][to[2] - 1] === 1) {
+                    destination[0] = to[0] + i * x
+                    destination[1] = to[1] + i * y
+                    destination[2] = to[2] - 1
+                }
+                //console.log(walkableMap[to[0] + i * x][to[1] + i * y][to[2]])
+
+            }
+
+            const cloneNodes = cloneGrid(nodes)
+            const character = characters.find(
+                (character) => character.id === socket.id
+            );
+            const startNode = cloneNodes[from[0]][from[1]][from[2]];
+            const endNode = cloneNodes[destination[0]][destination[1]][destination[2]];
+            // Find path
+            const finder = new pathfinding.AStarFinder();
+            const path = finder.findPath(startNode, endNode, cloneNodes);
+            //console.log(path)
+            //console.log(cloneNodes[103][104][0])
+            character.position = from;
+            character.path = path;
+            for (let i = 0; i < path.length; i++) {
+                console.log(path[i])
+
+            }
+
+            io.emit("playerMove", character);
+            character.path = []
+            character.position = to
+        }
+
+
+
+
+    })
+
+    socket.on("teleport", (to) => {//console.log(nodes[0][0][0])
+
+        console.log("Teleport to:")
         console.log(to)
 
-        const cloneNodes = cloneGrid(nodes)
-        const character = characters.find(
-            (character) => character.id === socket.id
-        );
-        const startNode = cloneNodes[from[0]][from[1]][from[2]];
-        const endNode = cloneNodes[to[0]][to[1]][to[2]];
-        // Find path
-        const finder = new pathfinding.AStarFinder();
-        const path = finder.findPath(startNode, endNode, cloneNodes);
-        console.log(path)
-        //console.log(cloneNodes[103][104][0])
-        character.position = from;
-        character.path = path;
-        io.emit("playerMove", character);
-        character.path = []
-        character.position = to
+        // const cloneNodes = cloneGrid(nodes)
+        // const character = characters.find(
+        //     (character) => character.id === socket.id
+        // );
+        // const startNode = cloneNodes[from[0]][from[1]][from[2]];
+        // const endNode = cloneNodes[to[0]][to[1]][to[2]];
+        // // Find path
+        // const finder = new pathfinding.AStarFinder();
+        // const path = finder.findPath(startNode, endNode, cloneNodes);
+        // //console.log(path)
+        // //console.log(cloneNodes[103][104][0])
+        // character.position = from;
+        // character.path = path;
+        // console.log(path[0])
+        // console.log(path[1])
+        // io.emit("playerMove", character);
+        // character.path = []
+        // character.position = to
 
     })
     socket.on("disconnect", () => {
